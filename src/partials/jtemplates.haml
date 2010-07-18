@@ -1,0 +1,39 @@
+%script#field-template{ :type => "text/html" }
+  :plain
+    <div class="field" id="{$T.inputID}-field">
+
+      <span class="label-wrapper">
+        <label for="{$T.inputID"><span class="label-text">{$T.labelText}</span></label>
+      </span>
+
+      {#if $T.inputType=='text'}
+        <span class="input-wrapper">
+          <span class="input-status">
+            <input type="text" class="text" id="{$T.inputID}" />
+          </span>
+        </span>
+
+      {#elseif $T.inputType=='radio'}
+        <span class="input-wrapper">
+          <span class="input-status">
+            <input type="text" class="text" id="{$T.inputID}" />
+          </span>
+        </span>
+
+      {#elseif $T.inputType=='checkbox'}
+        <span class="input-wrapper">
+          <span class="input-status">
+            <input type="text" class="text" id="{$T.inputID}" />
+          </span>
+        </span>
+
+      {#elseif $T.inputType=='select'}
+        <span class="input-wrapper">
+          <span class="input-status">
+            <input type="text" class="text" id="{$T.inputID}" />
+          </span>
+        </span>
+
+      {#/if}
+
+    </div>

@@ -1,0 +1,20 @@
+.meta#form-options
+  .header.meta-header
+    %h1 Customize your form layout
+    %a.toggle Close
+  .section
+    .header
+      %h1 How do you like your labels?
+      %ul
+        %li
+          %input.radio#labels-top{ :type => "radio", :name => "label-positions", :checked => "checked" }
+            %label{ :for => "labels-top" } Labels on top
+        %li
+          %input.radio#labels-front{ :type => "radio", :name => "label-positions" }
+            %label{ :for => "labels-front" } Labels in front
+        %li
+          %input.radio#labels-behind{ :type => "radio", :name => "label-positions" }
+            %label{ :for => "labels-behind" } Labels behind
+        %li
+          %input.radio#labels-below{ :type => "radio", :name => "label-positions" }
+            %label{ :for => "labels-below" } Labels below

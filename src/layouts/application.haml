@@ -1,7 +1,25 @@
-!!!
+!!!5
 %html
   %head
-    %title StaticMatic
+    %title Forms of the Evar | #{@page_title}
     = stylesheets
   %body
-    = yield
+    .header#page-header
+      .hgroup
+        %h1 Forms of the Evar
+        %h2 Robust cross-browser form generator.
+      .nav
+        %ul
+          %li
+            %a{ :href => "#form-options" } Form Controls
+
+    = partial "form_options"
+    = partial "jtemplates"
+
+    .section.content#main-content
+      %form{ :action => "/", :method => "post" }
+        = yield
+
+    %script{ :src => "javascripts/jquery-1.4.2.js", :type => "text/javascript" }
+    %script{ :src => "javascripts/jtemplates.js", :type => "text/javascript" }
+    %script{ :src => "javascripts/forminator.js", :type => "text/javascript" }
