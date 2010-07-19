@@ -1,0 +1,9 @@
+form {
+	display: block;
+	.field {
+		@extend .clearfix;
+		display: block;
+	}
+	label {
+	}
+}
