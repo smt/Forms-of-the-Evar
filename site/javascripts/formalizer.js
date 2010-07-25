@@ -1,5 +1,6 @@
 var Formalizer = Formalizer || {};
 Formalizer.UI_BASE_SPEED = 250;
+Formalizer.form = $("#form-wrapper form");
 //$.tmpl.debug = true;
 
 Formalizer.initToggleMetaSections = function() {
@@ -21,7 +22,6 @@ Formalizer.initToggleMetaSections = function() {
 };
 
 Formalizer.initAddField = function() {
-        var $form = $('#form-wrapper form');
         var $template = $('#field-template');
         $('#add-field').live('click', function() {
                 var data = Formalizer.collectParams();
@@ -29,8 +29,9 @@ Formalizer.initAddField = function() {
                         //console.log("render");
                         $template
                         .render(data)
-                        .appendTo($form);
+                        .appendTo(Formalizer.form);
                 }
+                Formalizer.updateCopy();
                 return false;
         });
         $('#field-type').bind('change', function() {
@@ -42,9 +43,8 @@ Formalizer.initAddField = function() {
 };
 
 Formalizer.initRemoveField = function() {
-        var $form = $('#form-wrapper form');
         var $template = $('#field-template');
-        $('.field', $form).live('dblclick', function() {
+        $('.field', Formalizer.form).live('dblclick', function() {
                 var $this = $(this);
                 $this.css({"height": $this.innerHeight(), "background": "#f60"});
                 $this.empty();
@@ -52,6 +52,7 @@ Formalizer.initRemoveField = function() {
                         $this.remove();
                 });
         });
+        Formalizer.updateCopy();
         return false;
 };
 
@@ -100,6 +101,19 @@ Formalizer.collectParams = function() {
 
         return data;
 };
+
+Formalizer.updateCopy = function() {
+        Formalizer.updateHTMLCopy();
+        Formalizer.updateCSSCopy();
+};
+
+Formalizer.updateHTMLCopy = function() {
+        var $copyTarget = $('#copy-html textarea');
+        $copyTarget.val(Formalizer.form.parent("#form-wrapper").html());
+};
+Formalizer.updateCSSCopy = function() {
+};
+
 
 $(document).ready(function() {
         Formalizer.initToggleMetaSections();

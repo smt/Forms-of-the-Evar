@@ -1,7 +1,8 @@
-#form-wrapper
-  .header#form-wrapper-header
-  %form{ :action => "/", :method => "post" }
-  .footer#form-wrapper-footer
+#form-workspace
+  .header#form-workspace-header
+  #form-wrapper
+    %form{ :action => "/", :method => "post" }
+  .footer#form-workspace-footer
     #new-field-parameters
       #new-field-type
         %select#field-type

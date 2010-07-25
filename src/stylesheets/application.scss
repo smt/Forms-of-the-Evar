@@ -162,17 +162,17 @@ table {
 	}
 }
 
-/* form-wrapper styles */
-#form-wrapper {
+/* form-workspace styles */
+#form-workspace {
 	@include fancy-borders;
 	@include fancy-shadows;
 	margin: 2em;
 }
-	#form-wrapper-header {
+	#form-workspace-header {
 		border-bottom: 1px solid $BORDER_COLOR;
 		padding: 1em;
 	}
-	#form-wrapper-footer {
+	#form-workspace-footer {
 		@extend .clearfix;
 		border-top: 1px solid $BORDER_COLOR;
 		padding: 1em;
