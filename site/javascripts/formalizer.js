@@ -1,6 +1,6 @@
 var Formalizer = Formalizer || {};
 Formalizer.UI_BASE_SPEED = 250;
-$.tmpl.debug = true;
+//$.tmpl.debug = true;
 
 Formalizer.initToggleMetaSections = function() {
         var hiddenClass = "ui-meta-hidden";
@@ -26,6 +26,7 @@ Formalizer.initAddField = function() {
         $('#add-field').live('click', function() {
                 var data = Formalizer.collectParams();
                 if ( Formalizer.valid(data) ) {
+                        //console.log("render");
                         $template
                         .render(data)
                         .appendTo($form);
@@ -56,9 +57,16 @@ Formalizer.initRemoveField = function() {
 
 Formalizer.valid = function(data) {
         if ( !data ) return false;
+        /*
         if ( !data.type ) return false;
         for ( var i = 0; i < data.params.length; i++ ) {
                 if ( data.params[i].required && (data.params[i].value === "") ) {
+                        return false;
+                }
+        }
+        */
+        for ( var param in data ) {
+                if ( data[param].required && (data[param].value === "") ) {
                         return false;
                 }
         }
@@ -67,19 +75,27 @@ Formalizer.valid = function(data) {
 
 Formalizer.collectParams = function() {
         var data = {};
-        data['params'] = [];
         var $paramsContainer = $('#new-field-parameters');
         var fieldType = $('#field-type', $paramsContainer).val();
         var $params = $('#new-' + fieldType, $paramsContainer).find('input');
 
-        data['type'] = fieldType;
+        data['type'] = { 'value'   : fieldType,
+                         'required': true
+                       };
 
         $params.each(function() {
                 var $this = $(this);
-                data.params.push( { 'name': $this.attr("id"),
-                                    'value': $this.val(),
-                                    'required': $this.hasClass("required")
-                                  } );
+                // take the input's id and convert it to a consistent usable name
+                // 'text-input-id' becomes 'inputid'
+                // 'text-label-text' becomes 'labeltext'
+                var name = new RegExp("^"+fieldType+"-(.*)$"). // a regex to strip out the input from the id
+                               exec($this.attr("id"))[1].       // extract the remainder of the label
+                               replace('-','');                 // remove the dashes
+
+                data[name] = { 'value'   : $this.val(),
+                               'required': $this.hasClass("required")
+                             };
+                //console.log(data.params[data.params.length-1].name);
         });
 
         return data;
