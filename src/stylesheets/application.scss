@@ -256,14 +256,17 @@ table {
                         font-size: 1.2em;
                         font-style: italic;
                         color: #888;
+                        z-index: 1;
                 }
                 input {
+                        background: transparent;
                         border: .1em solid $PRIMARY_COLOR;
 			border: .1em solid -webkit-gradient(linear, left top, left bottom, from($PRIMARY_COLOR), to($PRIMARY_COLOR - #333));
 			border: .1em solid -moz-linear-gradient(top,  $PRIMARY_COLOR,  $PRIMARY_COLOR - #333);
                         width: 250px;
                         margin: .2em;
                         height: 1.6em;
+                        z-index: 2;
 
 			-moz-border-radius: .3em;
 			-webkit-border-radius: .3em;
@@ -275,6 +278,7 @@ table {
                         //box-shadow: 0 .1em .5em rgba(0, 0, 0, .75);
 
                         &:focus {
+                                background: #fff;
                                 border-width: .3em;
                                 margin: 0;
                         }

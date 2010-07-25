@@ -3,48 +3,7 @@
   #form-wrapper
     %form{ :action => "/", :method => "post" }
   .footer#form-workspace-footer
-    #new-field-parameters
-      #new-field-type
-        %select#field-type
-          %option Choose a field type
-          %option{ :value => "text" } Text
-          %option{ :value => "radio" } Radios
-          %option{ :value => "checkbox" } Checkbox
-          %option{ :value => "date" } Date
-          %option{ :value => "select" } Select
-
-      .param-group#new-text
-        %label{ :for => "text-label-text" } Text to display in the field&rsquo;s label.
-        %input#text-label-text
-        %label{ :for => "text-input-id" } The ID to use for the field and input.
-        %input#text-input-id
-
-      .param-group#new-radio
-        %label{ :for => "radio-label-text" } Text to display in the field&rsquo;s label.
-        %input#radio-label-text
-        %label{ :for => "radio-input-id" } Text to display in the field&rsquo;s label.
-        %input#radio-input-id
-
-      .param-group#new-checkbox
-        %label{ :for => "checkbox-label-text" } Text to display in the field&rsquo;s label.
-        %input#checkbox-label-text
-        %label{ :for => "checkbox-input-id" } Text to display in the field&rsquo;s label.
-        %input#checkbox-input-id
-
-      .param-group#new-date
-        %label{ :for => "date-label-text" } Text to display in the field&rsquo;s label.
-        %input#date-label-text
-        %label{ :for => "date-input-id" } Text to display in the field&rsquo;s label.
-        %input#date-input-id
-
-      .param-group#new-select
-        %label{ :for => "select-label-text" } Text to display in the field&rsquo;s label.
-        %input#select-label-text
-        %label{ :for => "select-input-id" } Text to display in the field&rsquo;s label.
-        %input#select-input-id
-
-    %a#add-field
-      %span Add a new field
+    = partial 'new_field_form'
 
 .section#copy-html
   %textarea
