@@ -1,4 +1,5 @@
 *.*~
 *.swp
+*.swo
 site/stylesheets/*.css
 site/*.html

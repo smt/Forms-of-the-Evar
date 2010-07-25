@@ -1,0 +1,4 @@
+task :default do
+        `staticmatic preview .`
+        `sass --watch src/sass:site/css`
+end

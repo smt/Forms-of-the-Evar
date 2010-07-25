@@ -2,15 +2,25 @@
   :plain
     <div class="field" id="${inputID}-field">
 
+    {{if "text" == type}}
       <span class="label-wrapper">
         <label for="${inputID}"><span class="label-text">${labelText}</span></label>
       </span>
-
 
         <span class="input-wrapper">
           <span class="input-status">
             <input type="text" class="text" id="${inputID}" />
           </span>
         </span>
+    {{/if}}
+
+    {{if "radio" == type}}
+    {{/if}}
+
+    {{if "checkbox" == type}}
+    {{/if}}
+
+    {{if "select" == type}}
+    {{/if}}
 
     </div>

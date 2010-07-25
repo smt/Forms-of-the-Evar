@@ -167,8 +167,6 @@ table {
 	@include fancy-borders;
 	@include fancy-shadows;
 	margin: 2em;
-	width: 960px;
-	margin: 0 auto;
 }
 	#form-wrapper-header {
 		border-bottom: 1px solid $BORDER_COLOR;
@@ -179,8 +177,8 @@ table {
 		border-top: 1px solid $BORDER_COLOR;
 		padding: 1em;
 
-		.add-field,
-		.add-field:visited {
+		#add-field,
+		#add-field:visited {
 			display: block;
 			float: right;
 			background: $PRIMARY_COLOR;
@@ -244,8 +242,57 @@ table {
 			}
 		}
 	}
+#new-field-parameters {
+        #new-field-type {
+                float: left;
+        }
+        .param-group {
+                display: none;
+                float: left;
+                position: relative;
+                label {
+                        position: absolute;
+                        left: 0;
+                        font-size: 1.2em;
+                        font-style: italic;
+                        color: #888;
+                }
+                input {
+                        border: .1em solid $PRIMARY_COLOR;
+			border: .1em solid -webkit-gradient(linear, left top, left bottom, from($PRIMARY_COLOR), to($PRIMARY_COLOR - #333));
+			border: .1em solid -moz-linear-gradient(top,  $PRIMARY_COLOR,  $PRIMARY_COLOR - #333);
+                        width: 250px;
+                        margin: .2em;
+                        height: 1.6em;
+
+			-moz-border-radius: .3em;
+			-webkit-border-radius: .3em;
+			border-radius: .3em;
+
+                        
+                        //-moz-box-shadow: 0 .1em .5em rgba(0, 0, 0, .75);
+                        //-webkit-box-shadow: 0 .1em .5em rgba(0, 0, 0, .75);
+                        //box-shadow: 0 .1em .5em rgba(0, 0, 0, .75);
+
+                        &:focus {
+                                border-width: .3em;
+                                margin: 0;
+                        }
+                }
+        }
+}
+
 
 @import "form.scss";
+
+/* copyable code */
+#copy-html,
+#copy-css {
+	@include fancy-borders;
+	@include fancy-shadows;
+	width: 40%;
+	float: left;
+}
 
 
 /* clearfix */
