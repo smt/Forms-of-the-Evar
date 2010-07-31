@@ -172,119 +172,201 @@ table {
 		border-bottom: 1px solid $BORDER_COLOR;
 		padding: 1em;
 	}
-	#form-workspace-footer {
-		@extend .clearfix;
-		border-top: 1px solid $BORDER_COLOR;
-		padding: 1em;
+#form-workspace-footer {
+        @extend .clearfix;
+        border-top: 1px solid $BORDER_COLOR;
+        padding: 1em;
+}
 
-		#add-field,
-		#add-field:visited {
-			display: block;
-			float: right;
-			background: $PRIMARY_COLOR;
-			background: -webkit-gradient(linear, left top, left bottom, from($PRIMARY_COLOR), to($PRIMARY_COLOR - #333));
-			background: -moz-linear-gradient(top,  $PRIMARY_COLOR,  $PRIMARY_COLOR - #333);
-			padding: .3em;
+#add-field-form {
 
-			-moz-border-radius: .3em;
-			-webkit-border-radius: .3em;
-			border-radius: .3em;
-
-			-moz-box-shadow: 0 .1em .5em rgba(0, 0, 0, .75);
-			-webkit-box-shadow: 0 .1em .5em rgba(0, 0, 0, .75);
-			box-shadow: 0 .1em .5em rgba(0, 0, 0, .75);
-
-			span {
-				position: relative;
-				display: block;
-				padding: .6em .5em .75em 2em;
-				color: #fff;
-				font-weight: bold;
-				font-size: 1.2em;
-				vertical-align: middle;
-				text-transform: uppercase;
-
-				//-moz-box-shadow: 0 0 .3em rgba(0, 0, 0, .5);
-				//-webkit-box-shadow: 0 0 .3em rgba(0, 0, 0, .5);
-				//box-shadow: 0 0 .3em rgba(0, 0, 0, .5);
-
-				-moz-border-radius: .2em;
-				-webkit-border-radius: .2em;
-				border-radius: .2em;
-
-				background: $PRIMARY_COLOR;
-				background: -webkit-gradient(linear, left top, left bottom, from($PRIMARY_COLOR + #333), to($PRIMARY_COLOR));
-				background: -moz-linear-gradient(top,  $PRIMARY_COLOR + #333,  $PRIMARY_COLOR);
-
-				-moz-text-shadow: 0 0 .2em rgba(0, 0, 0, .75);
-				-webkit-text-shadow: 0 0 .2em rgba(0, 0, 0, .75);
-				text-shadow: 0 0 .2em rgba(0, 0, 0, .75);
-
-				&:before {
-					content: "+";
-					font-size: 1.8em;
-					margin: 0 .5em  0 0;
-					position: absolute;
-					top:.1em;
-					left: .25em;
-				}
-			}
-
-			&:hover {
-				cursor: pointer;
-				span {
-				}
-			}
-			&:active {
-				cursor: pointer;
-				span {
-				}
-			}
-		}
-	}
-#new-field-parameters {
-        #new-field-type {
-                float: left;
-        }
-        .param-group {
-                display: none;
-                float: left;
-                position: relative;
-                label {
-                        position: absolute;
-                        left: 0;
-                        font-size: 1.2em;
-                        font-style: italic;
-                        color: #888;
-                        z-index: 1;
-                }
-                input {
-                        background: transparent;
-                        border: .1em solid $PRIMARY_COLOR;
-			border: .1em solid -webkit-gradient(linear, left top, left bottom, from($PRIMARY_COLOR), to($PRIMARY_COLOR - #333));
-			border: .1em solid -moz-linear-gradient(top,  $PRIMARY_COLOR,  $PRIMARY_COLOR - #333);
-                        width: 250px;
-                        margin: .2em;
-                        height: 1.6em;
-                        z-index: 2;
-
-			-moz-border-radius: .3em;
-			-webkit-border-radius: .3em;
-			border-radius: .3em;
-
-                        
-                        //-moz-box-shadow: 0 .1em .5em rgba(0, 0, 0, .75);
-                        //-webkit-box-shadow: 0 .1em .5em rgba(0, 0, 0, .75);
-                        //box-shadow: 0 .1em .5em rgba(0, 0, 0, .75);
-
-                        &:focus {
-                                background: #fff;
-                                border-width: .3em;
+        #new-field-parameters {
+                #new-field-type {
+                        float: left;
+                        padding: 0;
+                        #field-type {
+                                font-size: 12px;
+                                padding: .3em;
                                 margin: 0;
+                                border: .1em solid $BORDER_COLOR;
+
+                                -moz-border-radius: .3em;
+                                -webkit-border-radius: .3em;
+                                border-radius: .3em;
+
+                                -moz-transition: border-color 250ms linear;
+                                -webkit-transition: border-color 250ms linear;
+                                transition: border-color 250ms linear;
+
+                                -moz-transition: -moz-box-shadow 150ms linear;
+                                -webkit-transition: -webkit-box-shadow 150ms linear;
+                                transition: box-shadow 150ms linear;
+                                
+                                &:focus {
+                                        background: #fff;
+                                        border-color: $PRIMARY_COLOR;
+
+                                        -moz-box-shadow: 0 0 .5em $PRIMARY_COLOR;
+                                        -webkit-box-shadow: 0 0 .5em $PRIMARY_COLOR;
+                                        box-shadow: 0 0 .5em $PRIMARY_COLOR;
+                                }
+                        }
+                }
+                .param-group {
+                        display: none;
+                        legend {
+                                display: none;
+                        }
+                        .field {
+                                position: relative;
+                                float: left;
+                                label {
+                                        color: #888;
+                                        font-size: 1.2em;
+                                        font-style: italic;
+                                        left: 0;
+                                        padding: 0 7px;
+                                        position: absolute;
+                                        top: 0;
+                                        z-index: 1;
+                                        span {
+                                                display: table-cell;
+                                                vertical-align: middle;
+                                                height: 24px;
+                                        }
+                                }
+                                input {
+                                        background: transparent;
+                                        border: 1px solid $BORDER_COLOR;
+                                        height: 16px;
+                                        margin: 0 .2em;
+                                        padding: .3em;
+                                        position: relative;
+                                        width: 25em;
+                                        z-index: 2;
+
+                                        -moz-border-radius: .3em;
+                                        -webkit-border-radius: .3em;
+                                        border-radius: .3em;
+
+                                        -moz-transition: border-color 250ms linear;
+                                        -webkit-transition: border-color 250ms linear;
+                                        transition: border-color 250ms linear;
+
+                                        -moz-transition: -moz-box-shadow 150ms linear;
+                                        -webkit-transition: -webkit-box-shadow 150ms linear;
+                                        transition: box-shadow 150ms linear;
+                                        
+                                        &:focus {
+                                                background: #fff;
+                                                border-color: $PRIMARY_COLOR;
+
+                                                -moz-box-shadow: 0 0 .5em $PRIMARY_COLOR;
+                                                -webkit-box-shadow: 0 0 .5em $PRIMARY_COLOR;
+                                                box-shadow: 0 0 .5em $PRIMARY_COLOR;
+                                        }
+                                        &.filled {
+                                                background: #fff;
+                                        }
+                                }
+                        }
+                }
+        }
+
+        input[type="submit"] {
+                display: none;
+        }
+
+        #add-field,
+        #add-field:visited {
+                display: block;
+                float: right;
+                background: $PRIMARY_COLOR;
+                background: -webkit-gradient(linear, left top, left bottom, from($PRIMARY_COLOR), to($PRIMARY_COLOR - #333));
+                background: -moz-linear-gradient(top,  $PRIMARY_COLOR,  $PRIMARY_COLOR - #333);
+
+                -moz-transition: background 250ms linear;
+                -webkit-transition: background 250ms linear;
+                transition: background 250ms linear;
+
+                padding: .3em;
+
+                -moz-border-radius: .3em;
+                -webkit-border-radius: .3em;
+                border-radius: .3em;
+
+                -moz-box-shadow: 0 .1em .5em rgba(0, 0, 0, .75);
+                -webkit-box-shadow: 0 .1em .5em rgba(0, 0, 0, .75);
+                box-shadow: 0 .1em .5em rgba(0, 0, 0, .75);
+
+                span {
+                        position: relative;
+                        display: block;
+                        padding: .6em .5em .75em 2em;
+                        color: #fff;
+                        font-weight: bold;
+                        font-size: 1.2em;
+                        vertical-align: middle;
+                        text-transform: uppercase;
+
+                        // -moz-box-shadow: 0 0 .3em rgba(0, 0, 0, .5);
+                        // -webkit-box-shadow: 0 0 .3em rgba(0, 0, 0, .5);
+                        // box-shadow: 0 0 .3em rgba(0, 0, 0, .5);
+
+                        // border-top: .1em solid $PRIMARY_COLOR + #444;
+                        // border-left: .1em solid $PRIMARY_COLOR + #444;
+                        // border-right: .1em solid $PRIMARY_COLOR - #111;
+                        // border-bottom: .1em solid $PRIMARY_COLOR - #111;
+
+                        -moz-border-radius: .3em;
+                        -webkit-border-radius: .3em;
+                        border-radius: .3em;
+
+                        background: $PRIMARY_COLOR;
+                        background: -webkit-gradient(linear, left top, left bottom, from($PRIMARY_COLOR + #333), to($PRIMARY_COLOR));
+                        background: -moz-linear-gradient(top,  $PRIMARY_COLOR + #333,  $PRIMARY_COLOR);
+
+                        -moz-transition: background 250ms linear;
+                        -webkit-transition: background 250ms linear;
+                        transition: background 250ms linear;
+
+                        -moz-text-shadow: 0 0 .2em rgba(0, 0, 0, .75);
+                        -webkit-text-shadow: 0 0 .2em rgba(0, 0, 0, .75);
+                        text-shadow: 0 0 .2em rgba(0, 0, 0, .75);
+
+                        &:before {
+                                content: "+";
+                                font-size: 1.8em;
+                                margin: 0 .5em  0 0;
+                                position: absolute;
+                                top:.1em;
+                                left: .25em;
+                        }
+                }
+                &:hover {
+                        cursor: pointer;
+                        span {
+                        }
+                }
+                &:active {
+                        cursor: pointer;
+                        span {
+                        }
+                }
+                &.disabled {
+                        background: #333;
+                        span {
+                                background: #666;
+                        }
+                        &:hover,
+                        &:active {
+                                cursor: default;
                         }
                 }
         }
 }
+
+
 
 
 @import "form.scss";

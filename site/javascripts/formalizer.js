@@ -23,7 +23,7 @@ Formalizer.initToggleMetaSections = function() {
 
 Formalizer.initAddField = function() {
         var $template = $('#field-template');
-        $('#add-field').live('click', function() {
+        $('#add-field-form').live('submit', function() {
                 var data = Formalizer.collectParams();
                 if ( Formalizer.valid(data) ) {
                         //console.log("render");
@@ -32,14 +32,29 @@ Formalizer.initAddField = function() {
                         .appendTo(Formalizer.form);
                 }
                 Formalizer.updateCopy();
+                Formalizer.clearParams();
                 return false;
         });
-        $('#field-type').bind('change', function() {
+        $('#field-type').live('change', function() {
                 var $this = $(this);
                 var $paramGroups = $('#new-field-parameters .param-group');
                 $paramGroups.hide();
                 $('#new-' + $this.val()).show();
         });
+
+        // add and remove class 'disabled' from add-field button as necessary
+        $('#add-field-form').live('change keyup', function() {
+                var data = Formalizer.collectParams();
+                if ( Formalizer.valid(data) ) {
+                        $(this).find('#add-field').removeClass('disabled');
+                } else {
+                        $(this).find('#add-field').addClass('disabled');
+                }
+        });
+
+        $('#add-field').live('click', function() {
+                $(this).closest('form').submit();
+        }).addClass('disabled');
 };
 
 Formalizer.initRemoveField = function() {
@@ -56,16 +71,19 @@ Formalizer.initRemoveField = function() {
         return false;
 };
 
+Formalizer.initNewFieldParams = function() {
+        $('#new-field-parameters').find('input').live('blur', function() {
+                var $this = $(this);
+                if ( $this.val() ) {
+                        $this.addClass('filled');
+                } else {
+                        $this.removeClass('filled');
+                }
+        });
+}
+
 Formalizer.valid = function(data) {
         if ( !data ) return false;
-        /*
-        if ( !data.type ) return false;
-        for ( var i = 0; i < data.params.length; i++ ) {
-                if ( data.params[i].required && (data.params[i].value === "") ) {
-                        return false;
-                }
-        }
-        */
         for ( var param in data ) {
                 if ( data[param].required && (data[param].value === "") ) {
                         return false;
@@ -100,6 +118,42 @@ Formalizer.collectParams = function() {
         });
 
         return data;
+        // data has the following structure:
+        //
+        // {
+        //      'type' : {
+        //              value : String, one of text, radio, checkbox, date, select
+        //              required: Boolean, true
+        //              },
+        //      'inputid' : {
+        //              value: String
+        //              required: Boolean
+        //              },
+        //      'labeltext' : {
+        //              value: String
+        //              required: Boolean
+        //              },
+        //      'options': [
+        //                      {
+        //                              label: String
+        //                              value: String
+        //                      },
+        //                      {
+        //                              label: String
+        //                              value: String
+        //                      },
+        //                      {
+        //                              label: String
+        //                              value: String
+        //                      },
+        //                      etc.
+        //              ]
+        // }
+};
+
+Formalizer.clearParams = function() {
+        $('#new-field-parameters').find('input').val('').removeClass('filled');
+        $('#new-field-parameters #field-type').focus();
 };
 
 Formalizer.updateCopy = function() {
@@ -119,4 +173,5 @@ $(document).ready(function() {
         Formalizer.initToggleMetaSections();
         Formalizer.initAddField();
         Formalizer.initRemoveField();
+        Formalizer.initNewFieldParams();
 });

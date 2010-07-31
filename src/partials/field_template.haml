@@ -7,11 +7,26 @@
         <label for="${inputid.value}"><span class="label-text">${labeltext.value}</span></label>
       </span>
 
+      <span class="input-wrapper">
+        <span class="input-status">
+          <input type="text" class="text" id="${inputid.value}" />
+        </span>
+      </span>
+    {{/if}}
+
+    {{if "radio" === type.value}}
+      <span class="label-wrapper">
+        <label for="${inputid.value}"><span class="label-text">${labeltext.value}</span></label>
+      </span>
+      
+      <fieldset>
+        <legend>${labeltext.value}</legend>
         <span class="input-wrapper">
           <span class="input-status">
-            <input type="text" class="text" id="${inputid.value}" />
+            <input type="radio" class="text" id="${inputid.value}[${inputvalue.value}]" />
           </span>
         </span>
+      </fieldset>
     {{/if}}
 
     </div>

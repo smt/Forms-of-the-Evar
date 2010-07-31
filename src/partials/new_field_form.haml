@@ -1,43 +1,71 @@
-  %form#add-field-form
-    #new-field-parameters
-      #new-field-type
-        %select#field-type
-          %option Choose a field type
-          %option{ :value => "text" } Text
-          %option{ :value => "radio" } Radios
-          %option{ :value => "checkbox" } Checkbox
-          %option{ :value => "date" } Date
-          %option{ :value => "select" } Select
+%form#add-field-form
+  #new-field-parameters
+    #new-field-type
+      %select#field-type
+        %option{ :value => "" } Choose a field type
+        %option{ :value => "text" } Text
+        %option{ :value => "radio" } Radios
+        %option{ :value => "checkbox" } Checkbox
+        %option{ :value => "date" } Date
+        %option{ :value => "select" } Select
+        %option{ :value => "submit" } Submit
 
-      .param-group#new-text
-        %label{ :for => "text-label-text" } Text to display in the field&rsquo;s label.
-        %input#text-label-text
-        %label{ :for => "text-input-id" } The ID to use for the field and input.
-        %input#text-input-id
+    %fieldset.param-group#new-text
+      %legend Text Field
+      .field
+        %label{ :for => "text-label-text" }
+          %span Text to display in the field&rsquo;s label.
+        %input#text-label-text.required
+      .field
+        %label{ :for => "text-input-id" }
+          %span The ID to use for the field and input.
+        %input#text-input-id.required
 
-      .param-group#new-radio
-        %label{ :for => "radio-label-text" } Text to display in the field&rsquo;s label.
-        %input#radio-label-text
-        %label{ :for => "radio-input-id" } Text to display in the field&rsquo;s label.
-        %input#radio-input-id
+    %fieldset.param-group#new-radio
+      %legend Radio Buttons
+      .field
+        %label{ :for => "radio-label-text" }
+          %span Text to display in the field&rsquo;s label.
+        %input#radio-label-text.required
+      .field
+        %label{ :for => "radio-input-id" }
+          %span Text to display in the field&rsquo;s label.
+        %input#radio-input-id.required
 
-      .param-group#new-checkbox
-        %label{ :for => "checkbox-label-text" } Text to display in the field&rsquo;s label.
-        %input#checkbox-label-text
-        %label{ :for => "checkbox-input-id" } Text to display in the field&rsquo;s label.
-        %input#checkbox-input-id
+    %fieldset.param-group#new-checkbox
+      %legend Checkboxes
+      .field
+        %label{ :for => "checkbox-label-text" }
+          %span Text to display in the field&rsquo;s label.
+        %input#checkbox-label-text.required
+      .field
+        %label{ :for => "checkbox-input-id" }
+          %span Text to display in the field&rsquo;s label.
+        %input#checkbox-input-id.required
 
-      .param-group#new-date
-        %label{ :for => "date-label-text" } Text to display in the field&rsquo;s label.
-        %input#date-label-text
-        %label{ :for => "date-input-id" } Text to display in the field&rsquo;s label.
-        %input#date-input-id
+    %fieldset.param-group#new-date
+      %legend Date Field
+      .field
+        %label{ :for => "date-label-text" }
+          %span Text to display in the field&rsquo;s label.
+        %input#date-label-text.required
+      .field
+        %label{ :for => "date-input-id" }
+          %span Text to display in the field&rsquo;s label.
+        %input#date-input-id.required
 
-      .param-group#new-select
-        %label{ :for => "select-label-text" } Text to display in the field&rsquo;s label.
-        %input#select-label-text
-        %label{ :for => "select-input-id" } Text to display in the field&rsquo;s label.
-        %input#select-input-id
+    %fieldset.param-group#new-select
+      %legend Select
+      .field
+        %label{ :for => "select-label-text" }
+          %span Text to display in the field&rsquo;s label.
+        %input#select-label-text.required
+      .field
+        %label{ :for => "select-input-id" }
+          %span Text to display in the field&rsquo;s label.
+        %input#select-input-id.required
 
+  .field
+    %input{ :type => "submit", :value => "Add a new field" }
     %a#add-field
       %span Add a new field
