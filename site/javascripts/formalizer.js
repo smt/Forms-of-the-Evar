@@ -53,7 +53,9 @@ Formalizer.initAddField = function() {
         });
 
         $('#add-field').live('click', function() {
-                $(this).closest('form').submit();
+                if ( !$(this).hasClass("disabled") ) {
+                        $(this).closest('form').submit();
+                }
         }).addClass('disabled');
 };
 

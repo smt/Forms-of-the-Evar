@@ -3,3 +3,4 @@
 *.swo
 site/stylesheets/*.css
 site/*.html
+.sass-cache/*

@@ -1,0 +1,94 @@
+@mixin button($BUTTON_COLOR) {
+        &,
+        &:visited {
+                display: block;
+                background: $BUTTON_COLOR;
+                background: -webkit-gradient(linear, left top, left bottom, from($BUTTON_COLOR), to($BUTTON_COLOR - #333));
+                background: -moz-linear-gradient(top,  $BUTTON_COLOR,  $BUTTON_COLOR - #333);
+
+                -moz-transition: background 250ms linear;
+                -webkit-transition: background 250ms linear;
+                transition: background 250ms linear;
+
+                padding: .3em;
+
+                -moz-border-radius: .3em;
+                -webkit-border-radius: .3em;
+                border-radius: .3em;
+
+                -moz-box-shadow: 0 .1em .5em rgba(0, 0, 0, .75);
+                -webkit-box-shadow: 0 .1em .5em rgba(0, 0, 0, .75);
+                box-shadow: 0 .1em .5em rgba(0, 0, 0, .75);
+
+                span {
+                        display: block;
+                        padding: .6em .5em .75em 2em;
+                        color: #fff;
+                        font-weight: bold;
+                        font-size: 1.2em;
+                        vertical-align: middle;
+
+                        // -moz-box-shadow: 0 0 .3em rgba(0, 0, 0, .5);
+                        // -webkit-box-shadow: 0 0 .3em rgba(0, 0, 0, .5);
+                        // box-shadow: 0 0 .3em rgba(0, 0, 0, .5);
+
+                        // border-top: .1em solid $BUTTON_COLOR + #444;
+                        // border-left: .1em solid $BUTTON_COLOR + #444;
+                        // border-right: .1em solid $BUTTON_COLOR - #111;
+                        // border-bottom: .1em solid $BUTTON_COLOR - #111;
+
+                        -moz-border-radius: .3em;
+                        -webkit-border-radius: .3em;
+                        border-radius: .3em;
+
+                        background: $BUTTON_COLOR;
+                        background: -webkit-gradient(linear, left top, left bottom, from($BUTTON_COLOR + #333), to($BUTTON_COLOR));
+                        background: -moz-linear-gradient(top,  $BUTTON_COLOR + #333,  $BUTTON_COLOR);
+
+                        -moz-transition: background 250ms linear;
+                        -webkit-transition: background 250ms linear;
+                        transition: background 250ms linear;
+
+                        -moz-transition: color 250ms linear;
+                        -webkit-transition: color 250ms linear;
+                        transition: color 250ms linear;
+
+                        -moz-text-shadow: 0 0 .2em rgba(0, 0, 0, .75);
+                        -webkit-text-shadow: 0 0 .2em rgba(0, 0, 0, .75);
+                        text-shadow: 0 0 .2em rgba(0, 0, 0, .75);
+
+
+                }
+                &:hover {
+                        cursor: pointer;
+                        span {
+                        }
+                }
+                &:active {
+                        cursor: pointer;
+                        span {
+                        }
+                }
+                &.disabled {
+                        $BUTTON_GRAY: desaturate($BUTTON_COLOR, 100%);
+                        background: $BUTTON_GRAY;
+                        background: -webkit-gradient(linear, left top, left bottom, from($BUTTON_GRAY), to($BUTTON_GRAY - #333));
+                        background: -moz-linear-gradient(top,  $BUTTON_GRAY,  $BUTTON_GRAY - #333);
+                        span {
+                                background: $BUTTON_GRAY;
+                                background: -webkit-gradient(linear, left top, left bottom, from($BUTTON_GRAY + #333), to($BUTTON_GRAY));
+                                background: -moz-linear-gradient(top,  $BUTTON_GRAY + #333,  $BUTTON_GRAY);
+                                color: #AAA;
+
+                                -moz-text-shadow: 0 0 .2em rgba(0, 0, 0, .75);
+                                -webkit-text-shadow: 0 0 .2em #999;
+                                text-shadow: 0 0 .2em #999;
+                        }
+                        &:hover,
+                        &:active {
+                                cursor: default;
+                                border: 0;
+                        }
+                }
+        }
+}

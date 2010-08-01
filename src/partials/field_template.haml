@@ -21,11 +21,16 @@
       
       <fieldset>
         <legend>${labeltext.value}</legend>
+        {{each options}}
+        <span class="label-wrapper">
+          <label for="${name}"><span class="label-text">${labeltext.value}</span></label>
+        </span>
         <span class="input-wrapper">
           <span class="input-status">
             <input type="radio" class="text" id="${inputid.value}[${inputvalue.value}]" />
           </span>
         </span>
+        {{/each}}
       </fieldset>
     {{/if}}
 

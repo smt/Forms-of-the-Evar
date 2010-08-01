@@ -14,23 +14,42 @@
       %legend Text Field
       .field
         %label{ :for => "text-label-text" }
-          %span Text to display in the field&rsquo;s label.
+          %span Text to display in the field&rsquo;s <strong>label</strong>.
         %input#text-label-text.required
       .field
         %label{ :for => "text-input-id" }
-          %span The ID to use for the field and input.
+          %span The <strong>ID</strong> to use for the field and input.
         %input#text-input-id.required
 
     %fieldset.param-group#new-radio
       %legend Radio Buttons
       .field
         %label{ :for => "radio-label-text" }
-          %span Text to display in the field&rsquo;s label.
+          %span Text to display in the field&rsquo;s <strong>label</strong>.
         %input#radio-label-text.required
       .field
         %label{ :for => "radio-input-id" }
-          %span Text to display in the field&rsquo;s label.
+          %span The <strong>ID</strong> to use for the field and input.
         %input#radio-input-id.required
+      %ul.options
+        %li
+          .field
+            %label{ :for => "radio-option-1-label" }
+              %span Option 1 label
+            %input#radio-option-1-label.required
+          .field
+            %label{ :for => "radio-option-1-value" }
+              %span Option 1 value
+            %input#radio-option-1-value.required
+        %li
+          .field
+            %label{ :for => "radio-option-2-label" }
+              %span Option 2 label
+            %input#radio-option-1-label.required
+          .field
+            %label{ :for => "radio-option-2-value" }
+              %span Option 2 value
+            %input#radio-option-1-value.required
 
     %fieldset.param-group#new-checkbox
       %legend Checkboxes

@@ -1,3 +1,5 @@
+@import "button";
+
 /* constants and mixins */
 $PRIMARY_COLOR: #282;
 $SECONDARY_COLOR: #282;
@@ -179,8 +181,9 @@ table {
 }
 
 #add-field-form {
-
+        @extend clearfix;
         #new-field-parameters {
+                float: left;
                 #new-field-type {
                         float: left;
                         padding: 0;
@@ -272,68 +275,24 @@ table {
                         }
                 }
         }
-
-        input[type="submit"] {
-                display: none;
-        }
-
-        #add-field,
-        #add-field:visited {
-                display: block;
+        & > .field {
                 float: right;
-                background: $PRIMARY_COLOR;
-                background: -webkit-gradient(linear, left top, left bottom, from($PRIMARY_COLOR), to($PRIMARY_COLOR - #333));
-                background: -moz-linear-gradient(top,  $PRIMARY_COLOR,  $PRIMARY_COLOR - #333);
-
-                -moz-transition: background 250ms linear;
-                -webkit-transition: background 250ms linear;
-                transition: background 250ms linear;
-
-                padding: .3em;
-
-                -moz-border-radius: .3em;
-                -webkit-border-radius: .3em;
-                border-radius: .3em;
-
-                -moz-box-shadow: 0 .1em .5em rgba(0, 0, 0, .75);
-                -webkit-box-shadow: 0 .1em .5em rgba(0, 0, 0, .75);
-                box-shadow: 0 .1em .5em rgba(0, 0, 0, .75);
-
+        }
+        input[type="submit"] {
+                // If this is set to display:hidden then webkit won't submit the form when the enter key is pressed
+                border: 0;
+                height: 0px;
+                margin: 0;
+                padding: 0;
+                visibility: hidden;
+                width: 0px;
+        }
+        #add-field {
+                @include button($PRIMARY_COLOR);
+                float: right;
                 span {
                         position: relative;
-                        display: block;
-                        padding: .6em .5em .75em 2em;
-                        color: #fff;
-                        font-weight: bold;
-                        font-size: 1.2em;
-                        vertical-align: middle;
                         text-transform: uppercase;
-
-                        // -moz-box-shadow: 0 0 .3em rgba(0, 0, 0, .5);
-                        // -webkit-box-shadow: 0 0 .3em rgba(0, 0, 0, .5);
-                        // box-shadow: 0 0 .3em rgba(0, 0, 0, .5);
-
-                        // border-top: .1em solid $PRIMARY_COLOR + #444;
-                        // border-left: .1em solid $PRIMARY_COLOR + #444;
-                        // border-right: .1em solid $PRIMARY_COLOR - #111;
-                        // border-bottom: .1em solid $PRIMARY_COLOR - #111;
-
-                        -moz-border-radius: .3em;
-                        -webkit-border-radius: .3em;
-                        border-radius: .3em;
-
-                        background: $PRIMARY_COLOR;
-                        background: -webkit-gradient(linear, left top, left bottom, from($PRIMARY_COLOR + #333), to($PRIMARY_COLOR));
-                        background: -moz-linear-gradient(top,  $PRIMARY_COLOR + #333,  $PRIMARY_COLOR);
-
-                        -moz-transition: background 250ms linear;
-                        -webkit-transition: background 250ms linear;
-                        transition: background 250ms linear;
-
-                        -moz-text-shadow: 0 0 .2em rgba(0, 0, 0, .75);
-                        -webkit-text-shadow: 0 0 .2em rgba(0, 0, 0, .75);
-                        text-shadow: 0 0 .2em rgba(0, 0, 0, .75);
-
                         &:before {
                                 content: "+";
                                 font-size: 1.8em;
@@ -341,26 +300,6 @@ table {
                                 position: absolute;
                                 top:.1em;
                                 left: .25em;
-                        }
-                }
-                &:hover {
-                        cursor: pointer;
-                        span {
-                        }
-                }
-                &:active {
-                        cursor: pointer;
-                        span {
-                        }
-                }
-                &.disabled {
-                        background: #333;
-                        span {
-                                background: #666;
-                        }
-                        &:hover,
-                        &:active {
-                                cursor: default;
                         }
                 }
         }
