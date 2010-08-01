@@ -185,7 +185,6 @@ table {
 #add-field-form {
         @extend clearfix;
         #new-field-parameters {
-                float: left;
                 #new-field-type {
                         float: left;
                         padding: 0;
@@ -219,6 +218,7 @@ table {
                 }
                 .param-group {
                         display: none;
+                        float: left;
                         legend {
                                 display: none;
                         }
