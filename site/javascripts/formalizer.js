@@ -1,19 +1,19 @@
-var FoTE = FoTE || {};
-FoTE.UI_BASE_SPEED = 250;
-FoTE.form = $("#form-wrapper form");
+var FotE = FotE || {};
+FotE.UI_BASE_SPEED = 250;
+FotE.form = $("#form-wrapper form");
 //$.tmpl.debug = true;
 
-FoTE.initToggleMetaSections = function() {
+FotE.initToggleMetaSections = function() {
         var hiddenClass = "ui-meta-hidden";
         $('.meta a.toggle').live('click', function() {
                 var $link = $(this);
                 var $parent = $link.closest(".meta");
                 var $s = $(".section", $parent);
                 if ( $parent.hasClass(hiddenClass) ) {
-                        $s.slideDown(FoTE.UI_BASE_SPEED);
+                        $s.slideDown(FotE.UI_BASE_SPEED);
                         $link.text("Close");
                 } else {
-                        $s.slideUp(FoTE.UI_BASE_SPEED);
+                        $s.slideUp(FotE.UI_BASE_SPEED);
                         $link.text("Open");
                 }
                 $parent.toggleClass(hiddenClass);
@@ -21,18 +21,18 @@ FoTE.initToggleMetaSections = function() {
         });
 };
 
-FoTE.initAddField = function() {
+FotE.initAddField = function() {
         var $template = $('#field-template');
         $('#add-field-form').live('submit', function() {
-                var data = FoTE.collectParams();
-                if ( FoTE.valid(data) ) {
+                var data = FotE.collectParams();
+                if ( FotE.valid(data) ) {
                         //console.log("render");
                         $template
                         .render(data)
-                        .appendTo(FoTE.form);
+                        .appendTo(FotE.form);
                 }
-                FoTE.updateCopy();
-                FoTE.clearParams();
+                FotE.updateCopy();
+                FotE.clearParams();
                 return false;
         });
         $('#field-type').live('change', function() {
@@ -44,8 +44,8 @@ FoTE.initAddField = function() {
 
         // add and remove class 'disabled' from add-field button as necessary
         $('#add-field-form').live('change keyup', function() {
-                var data = FoTE.collectParams();
-                if ( FoTE.valid(data) ) {
+                var data = FotE.collectParams();
+                if ( FotE.valid(data) ) {
                         $(this).find('#add-field').removeClass('disabled');
                 } else {
                         $(this).find('#add-field').addClass('disabled');
@@ -59,21 +59,21 @@ FoTE.initAddField = function() {
         }).addClass('disabled');
 };
 
-FoTE.initRemoveField = function() {
+FotE.initRemoveField = function() {
         var $template = $('#field-template');
-        $('.field', FoTE.form).live('dblclick', function() {
+        $('.field', FotE.form).live('dblclick', function() {
                 var $this = $(this);
                 $this.css({"height": $this.innerHeight(), "background": "#f60"});
                 $this.empty();
-                $this.animate({backgroundColor: "#fff", height: 0}, FoTE.UI_BASE_SPEED, function() {
+                $this.animate({backgroundColor: "#fff", height: 0}, FotE.UI_BASE_SPEED, function() {
                         $this.remove();
                 });
         });
-        FoTE.updateCopy();
+        FotE.updateCopy();
         return false;
 };
 
-FoTE.initNewFieldParams = function() {
+FotE.initNewFieldParams = function() {
         $('#new-field-parameters').find('input').live('blur', function() {
                 var $this = $(this);
                 if ( $this.val() ) {
@@ -84,7 +84,7 @@ FoTE.initNewFieldParams = function() {
         });
 }
 
-FoTE.valid = function(data) {
+FotE.valid = function(data) {
         if ( !data ) return false;
         for ( var param in data ) {
                 if ( data[param].required && (data[param].value === "") ) {
@@ -94,7 +94,7 @@ FoTE.valid = function(data) {
         return true;
 };
 
-FoTE.collectParams = function() {
+FotE.collectParams = function() {
         var data = {};
         var $paramsContainer = $('#new-field-parameters');
         var fieldType = $('#field-type', $paramsContainer).val();
@@ -153,27 +153,27 @@ FoTE.collectParams = function() {
         // }
 };
 
-FoTE.clearParams = function() {
+FotE.clearParams = function() {
         $('#new-field-parameters').find('input').val('').removeClass('filled');
         $('#new-field-parameters #field-type').focus();
 };
 
-FoTE.updateCopy = function() {
-        FoTE.updateHTMLCopy();
-        FoTE.updateCSSCopy();
+FotE.updateCopy = function() {
+        FotE.updateHTMLCopy();
+        FotE.updateCSSCopy();
 };
 
-FoTE.updateHTMLCopy = function() {
+FotE.updateHTMLCopy = function() {
         var $copyTarget = $('#copy-html textarea');
-        $copyTarget.val(FoTE.form.parent("#form-wrapper").html());
+        $copyTarget.val(FotE.form.parent("#form-wrapper").html());
 };
-FoTE.updateCSSCopy = function() {
+FotE.updateCSSCopy = function() {
 };
 
 
 $(document).ready(function() {
-        FoTE.initToggleMetaSections();
-        FoTE.initAddField();
-        FoTE.initRemoveField();
-        FoTE.initNewFieldParams();
+        FotE.initToggleMetaSections();
+        FotE.initAddField();
+        FotE.initRemoveField();
+        FotE.initNewFieldParams();
 });
