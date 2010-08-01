@@ -1,19 +1,19 @@
-var Formalizer = Formalizer || {};
-Formalizer.UI_BASE_SPEED = 250;
-Formalizer.form = $("#form-wrapper form");
+var FoTE = FoTE || {};
+FoTE.UI_BASE_SPEED = 250;
+FoTE.form = $("#form-wrapper form");
 //$.tmpl.debug = true;
 
-Formalizer.initToggleMetaSections = function() {
+FoTE.initToggleMetaSections = function() {
         var hiddenClass = "ui-meta-hidden";
         $('.meta a.toggle').live('click', function() {
                 var $link = $(this);
                 var $parent = $link.closest(".meta");
                 var $s = $(".section", $parent);
                 if ( $parent.hasClass(hiddenClass) ) {
-                        $s.slideDown(Formalizer.UI_BASE_SPEED);
+                        $s.slideDown(FoTE.UI_BASE_SPEED);
                         $link.text("Close");
                 } else {
-                        $s.slideUp(Formalizer.UI_BASE_SPEED);
+                        $s.slideUp(FoTE.UI_BASE_SPEED);
                         $link.text("Open");
                 }
                 $parent.toggleClass(hiddenClass);
@@ -21,18 +21,18 @@ Formalizer.initToggleMetaSections = function() {
         });
 };
 
-Formalizer.initAddField = function() {
+FoTE.initAddField = function() {
         var $template = $('#field-template');
         $('#add-field-form').live('submit', function() {
-                var data = Formalizer.collectParams();
-                if ( Formalizer.valid(data) ) {
+                var data = FoTE.collectParams();
+                if ( FoTE.valid(data) ) {
                         //console.log("render");
                         $template
                         .render(data)
-                        .appendTo(Formalizer.form);
+                        .appendTo(FoTE.form);
                 }
-                Formalizer.updateCopy();
-                Formalizer.clearParams();
+                FoTE.updateCopy();
+                FoTE.clearParams();
                 return false;
         });
         $('#field-type').live('change', function() {
@@ -44,8 +44,8 @@ Formalizer.initAddField = function() {
 
         // add and remove class 'disabled' from add-field button as necessary
         $('#add-field-form').live('change keyup', function() {
-                var data = Formalizer.collectParams();
-                if ( Formalizer.valid(data) ) {
+                var data = FoTE.collectParams();
+                if ( FoTE.valid(data) ) {
                         $(this).find('#add-field').removeClass('disabled');
                 } else {
                         $(this).find('#add-field').addClass('disabled');
@@ -59,21 +59,21 @@ Formalizer.initAddField = function() {
         }).addClass('disabled');
 };
 
-Formalizer.initRemoveField = function() {
+FoTE.initRemoveField = function() {
         var $template = $('#field-template');
-        $('.field', Formalizer.form).live('dblclick', function() {
+        $('.field', FoTE.form).live('dblclick', function() {
                 var $this = $(this);
                 $this.css({"height": $this.innerHeight(), "background": "#f60"});
                 $this.empty();
-                $this.animate({backgroundColor: "#fff", height: 0}, Formalizer.UI_BASE_SPEED, function() {
+                $this.animate({backgroundColor: "#fff", height: 0}, FoTE.UI_BASE_SPEED, function() {
                         $this.remove();
                 });
         });
-        Formalizer.updateCopy();
+        FoTE.updateCopy();
         return false;
 };
 
-Formalizer.initNewFieldParams = function() {
+FoTE.initNewFieldParams = function() {
         $('#new-field-parameters').find('input').live('blur', function() {
                 var $this = $(this);
                 if ( $this.val() ) {
@@ -84,7 +84,7 @@ Formalizer.initNewFieldParams = function() {
         });
 }
 
-Formalizer.valid = function(data) {
+FoTE.valid = function(data) {
         if ( !data ) return false;
         for ( var param in data ) {
                 if ( data[param].required && (data[param].value === "") ) {
@@ -94,7 +94,7 @@ Formalizer.valid = function(data) {
         return true;
 };
 
-Formalizer.collectParams = function() {
+FoTE.collectParams = function() {
         var data = {};
         var $paramsContainer = $('#new-field-parameters');
         var fieldType = $('#field-type', $paramsContainer).val();
@@ -153,27 +153,27 @@ Formalizer.collectParams = function() {
         // }
 };
 
-Formalizer.clearParams = function() {
+FoTE.clearParams = function() {
         $('#new-field-parameters').find('input').val('').removeClass('filled');
         $('#new-field-parameters #field-type').focus();
 };
 
-Formalizer.updateCopy = function() {
-        Formalizer.updateHTMLCopy();
-        Formalizer.updateCSSCopy();
+FoTE.updateCopy = function() {
+        FoTE.updateHTMLCopy();
+        FoTE.updateCSSCopy();
 };
 
-Formalizer.updateHTMLCopy = function() {
+FoTE.updateHTMLCopy = function() {
         var $copyTarget = $('#copy-html textarea');
-        $copyTarget.val(Formalizer.form.parent("#form-wrapper").html());
+        $copyTarget.val(FoTE.form.parent("#form-wrapper").html());
 };
-Formalizer.updateCSSCopy = function() {
+FoTE.updateCSSCopy = function() {
 };
 
 
 $(document).ready(function() {
-        Formalizer.initToggleMetaSections();
-        Formalizer.initAddField();
-        Formalizer.initRemoveField();
-        Formalizer.initNewFieldParams();
+        FoTE.initToggleMetaSections();
+        FoTE.initAddField();
+        FoTE.initRemoveField();
+        FoTE.initNewFieldParams();
 });
