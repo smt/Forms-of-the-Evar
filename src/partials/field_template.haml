@@ -16,15 +16,15 @@
     {{/if}}
 
     {{if type === "radio"}}
-      <fieldset>
+      <fieldset id="${standard.attr}-fieldset">
         <legend>${standard.text}</legend>
         {{each options}}
           <span class="label-wrapper">
-            <label for="${attr}"><span class="label-text">${text}</span></label>
+            <label for="${standard.attr}-${attr}"><span class="label-text">${text}</span></label>
           </span>
           <span class="input-wrapper">
             <span class="input-status">
-              <input type="radio" class="text" name="${standard.text}" id="${attr}" />
+              <input type="radio" class="text" name="${standard.attr}" id="${standard.attr}-${attr}" value="${attr}" />
             </span>
           </span>
         {{/each}}

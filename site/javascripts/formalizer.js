@@ -25,8 +25,7 @@ FotE.initAddField = function() {
         var $template = $('#field-template');
         $('#add-field-form').live('submit', function() {
                 var data = FotE.collectParams();
-                if ( FotE.valid(data) ) {
-                        //console.log("render");
+                if ( FotE.valid(this) ) {
                         $template
                         .render(data)
                         .appendTo(FotE.form);
@@ -44,12 +43,8 @@ FotE.initAddField = function() {
 
         // add and remove class 'disabled' from add-field button as necessary
         $('#add-field-form').live('change keyup', function() {
-                var data = FotE.collectParams();
-                if ( FotE.valid(data) ) {
-                        $(this).find('#add-field').removeClass('disabled');
-                } else {
-                        $(this).find('#add-field').addClass('disabled');
-                }
+                var $btn = $(this).find('#add-field');
+                FotE.valid(this) ? $btn.removeClass('disabled') : $btn.addClass('disabled');
         });
 
         $('#add-field').live('click', function() {
@@ -84,17 +79,18 @@ FotE.initNewFieldParams = function() {
         });
 }
 
-FotE.valid = function(data) {
-        var $paramsContainer = $('#new-field-parameters');
+FotE.valid = function(form) {
+        var $paramsContainer = $('#new-field-parameters', form);
         var fieldType = $('#field-type', $paramsContainer).val();
-        if ( !fieldType ) return false;
-        var $subContainer    = $('#new-'+fieldType, $paramsContainer);
+        var isValid = true;
+        if ( !fieldType ) isValid = false;
+        var $subContainer = $('#new-'+fieldType, $paramsContainer);
         $('.required', $subContainer).each(function() {
                 if ( !$(this).val() ) {
-                        return false;
+                        isValid = false;
                 }
         });
-        return true;
+        return isValid;
 };
 
 FotE.collectParams = function() {
