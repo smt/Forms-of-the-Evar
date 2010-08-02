@@ -230,7 +230,7 @@ table {
                                         font-size: 1.2em;
                                         font-style: italic;
                                         left: 0;
-                                        padding: 0 7px;
+                                        padding: .1em 0 0 1em;
                                         position: absolute;
                                         top: 0;
                                         z-index: 1;
@@ -244,10 +244,10 @@ table {
                                         background: transparent;
                                         border: 1px solid $BORDER_COLOR;
                                         height: 16px;
-                                        margin: 0 .2em;
+                                        margin: 0 0 .6em .6em;
                                         padding: .3em;
                                         position: relative;
-                                        width: 25em;
+                                        width: 20em;
                                         z-index: 2;
 
                                         -moz-border-radius: .3em;
@@ -272,6 +272,14 @@ table {
                                         }
                                         &.filled {
                                                 background: #fff;
+                                        }
+                                }
+                        }
+                        .options {
+                                float: left;
+                                li {
+                                        .field {
+                                                @extend clearfix;
                                         }
                                 }
                         }

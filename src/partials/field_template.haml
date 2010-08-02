@@ -1,37 +1,32 @@
 %script#field-template{ :type => "text/html" }
   :plain
-    <div class="field" id="${inputid.value}-field">
 
-    {{if "text" === type.value}}
-      <span class="label-wrapper">
-        <label for="${inputid.value}"><span class="label-text">${labeltext.value}</span></label>
-      </span>
-
-      <span class="input-wrapper">
-        <span class="input-status">
-          <input type="text" class="text" id="${inputid.value}" />
-        </span>
-      </span>
-    {{/if}}
-
-    {{if "radio" === type.value}}
-      <span class="label-wrapper">
-        <label for="${inputid.value}"><span class="label-text">${labeltext.value}</span></label>
-      </span>
-      
-      <fieldset>
-        <legend>${labeltext.value}</legend>
-        {{each options}}
+    {{if type === "text"}}
+      <div class="field" id="${standard.attr}-field">
         <span class="label-wrapper">
-          <label for="${name}"><span class="label-text">${labeltext.value}</span></label>
+          <label for="${standard.attr}"><span class="label-text">${standard.text}</span></label>
         </span>
+
         <span class="input-wrapper">
           <span class="input-status">
-            <input type="radio" class="text" id="${inputid.value}[${inputvalue.value}]" />
+            <input type="text" class="text" id="${standard.attr}" />
           </span>
         </span>
+      </div>
+    {{/if}}
+
+    {{if type === "radio"}}
+      <fieldset>
+        <legend>${standard.text}</legend>
+        {{each options}}
+          <span class="label-wrapper">
+            <label for="${attr}"><span class="label-text">${text}</span></label>
+          </span>
+          <span class="input-wrapper">
+            <span class="input-status">
+              <input type="radio" class="text" name="${standard.text}" id="${attr}" />
+            </span>
+          </span>
         {{/each}}
       </fieldset>
     {{/if}}
-
-    </div>

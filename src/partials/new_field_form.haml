@@ -2,87 +2,55 @@
   #new-field-parameters
     #new-field-type
       %select#field-type
-        %option{ :value => "" } Choose a field type
-        %option{ :value => "text" } Text
-        %option{ :value => "radio" } Radios
+        %option{ :value => ""         } Choose a field type
+        %option{ :value => "text"     } Text
+        %option{ :value => "radio"    } Radios
         %option{ :value => "checkbox" } Checkbox
-        %option{ :value => "date" } Date
-        %option{ :value => "select" } Select
-        %option{ :value => "submit" } Submit
+        %option{ :value => "select"   } Select
+        %option{ :value => "submit"   } Submit
 
     %fieldset.param-group#new-text
       %legend Text Field
-      .field
-        %label{ :for => "text-label-text" }
-          %span Text to display in the field&rsquo;s <strong>label</strong>.
-        %input#text-label-text.required
-      .field
-        %label{ :for => "text-input-id" }
-          %span The <strong>ID</strong> to use for the field and input.
-        %input#text-input-id.required
+      .standard
+        .field
+          %label{ :for => "text-label-text" }
+            %span Text to display in the field&rsquo;s <strong>label</strong>.
+          %input#text-label-text.required.text-value
+        .field
+          %label{ :for => "text-input-id" }
+            %span The <strong>ID</strong> to use for the field and input.
+          %input#text-input-id.required.attr-value
 
     %fieldset.param-group#new-radio
       %legend Radio Buttons
-      .field
-        %label{ :for => "radio-label-text" }
-          %span Text to display in the field&rsquo;s <strong>label</strong>.
-        %input#radio-label-text.required
-      .field
-        %label{ :for => "radio-input-id" }
-          %span The <strong>ID</strong> to use for the field and input.
-        %input#radio-input-id.required
+      .standard
+        .field
+          %label{ :for => "radio-label-text" }
+            %span Text to display in the field&rsquo;s <strong>label</strong>.
+          %input#radio-label-text.required.text-value
+        .field
+          %label{ :for => "radio-input-id" }
+            %span The <strong>ID</strong> to use for the field and input.
+          %input#radio-input-id.required.attr-value
       %ul.options
         %li
           .field
             %label{ :for => "radio-option-1-label" }
               %span Option 1 label
-            %input#radio-option-1-label.required
+            %input#radio-option-1-label.required.text-value
           .field
             %label{ :for => "radio-option-1-value" }
               %span Option 1 value
-            %input#radio-option-1-value.required
+            %input#radio-option-1-value.required.attr-value
         %li
           .field
             %label{ :for => "radio-option-2-label" }
               %span Option 2 label
-            %input#radio-option-1-label.required
+            %input#radio-option-1-label.required.text-value
           .field
             %label{ :for => "radio-option-2-value" }
               %span Option 2 value
-            %input#radio-option-1-value.required
-
-    %fieldset.param-group#new-checkbox
-      %legend Checkboxes
-      .field
-        %label{ :for => "checkbox-label-text" }
-          %span Text to display in the field&rsquo;s label.
-        %input#checkbox-label-text.required
-      .field
-        %label{ :for => "checkbox-input-id" }
-          %span Text to display in the field&rsquo;s label.
-        %input#checkbox-input-id.required
-
-    %fieldset.param-group#new-date
-      %legend Date Field
-      .field
-        %label{ :for => "date-label-text" }
-          %span Text to display in the field&rsquo;s label.
-        %input#date-label-text.required
-      .field
-        %label{ :for => "date-input-id" }
-          %span Text to display in the field&rsquo;s label.
-        %input#date-input-id.required
-
-    %fieldset.param-group#new-select
-      %legend Select
-      .field
-        %label{ :for => "select-label-text" }
-          %span Text to display in the field&rsquo;s label.
-        %input#select-label-text.required
-      .field
-        %label{ :for => "select-input-id" }
-          %span Text to display in the field&rsquo;s label.
-        %input#select-input-id.required
+            %input#radio-option-1-value.required.attr-value
 
   .field
     %input{ :type => "submit", :value => "Add a new field" }

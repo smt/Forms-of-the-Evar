@@ -85,12 +85,15 @@ FotE.initNewFieldParams = function() {
 }
 
 FotE.valid = function(data) {
-        if ( !data ) return false;
-        for ( var param in data ) {
-                if ( data[param].required && (data[param].value === "") ) {
+        var $paramsContainer = $('#new-field-parameters');
+        var fieldType = $('#field-type', $paramsContainer).val();
+        if ( !fieldType ) return false;
+        var $subContainer    = $('#new-'+fieldType, $paramsContainer);
+        $('.required', $subContainer).each(function() {
+                if ( !$(this).val() ) {
                         return false;
                 }
-        }
+        });
         return true;
 };
 
@@ -98,59 +101,55 @@ FotE.collectParams = function() {
         var data = {};
         var $paramsContainer = $('#new-field-parameters');
         var fieldType = $('#field-type', $paramsContainer).val();
-        var $params = $('#new-' + fieldType, $paramsContainer).find('input');
+        var $subContainer    = $('#new-'+fieldType, $paramsContainer);
 
-        data['type'] = { 'value'   : fieldType,
-                         'required': true
-                       };
+        data.type     = fieldType;
 
-        $params.each(function() {
+        data.standard = getDataFromContainer( $('.standard', $subContainer) );
+
+        data.options  = [];
+
+        $('.options li', $subContainer).each(function() {
                 var $this = $(this);
-                // take the input's id and convert it to a consistent usable name
-                // 'text-input-id' becomes 'inputid'
-                // 'text-label-text' becomes 'labeltext'
-                var name = new RegExp("^"+fieldType+"-(.*)$"). // a regex to strip out the input from the id
-                               exec($this.attr("id"))[1].       // extract the remainder of the label
-                               replace('-','');                 // remove the dashes
-
-                data[name] = { 'value'   : $this.val(),
-                               'required': $this.hasClass("required")
-                             };
-                //console.log(data.params[data.params.length-1].name);
+                data.options.push( getDataFromContainer($this) );
         });
 
+        console.log(data);
         return data;
-        // data has the following structure:
+        // data should have the following structure:
         //
         // {
-        //      'type' : {
-        //              value : String, one of text, radio, checkbox, date, select
-        //              required: Boolean, true
-        //              },
-        //      'inputid' : {
-        //              value: String
-        //              required: Boolean
-        //              },
-        //      'labeltext' : {
-        //              value: String
-        //              required: Boolean
-        //              },
-        //      'options': [
-        //                      {
-        //                              label: String
-        //                              value: String
-        //                      },
-        //                      {
-        //                              label: String
-        //                              value: String
-        //                      },
-        //                      {
-        //                              label: String
-        //                              value: String
-        //                      },
-        //                      etc.
-        //              ]
+        //        'type'     : String,
+        //        'standard' : {
+        //                             'text' : String,
+        //                             'attr' : String
+        //                     },
+        //        'options'  : [
+        //                             {
+        //                                     'text' : String,
+        //                                     'attr' : String,
+        //                             },
+        //                             {
+        //                                     'text' : String,
+        //                                     'attr' : String,
+        //                             },
+        //                             {
+        //                                     'text' : String,
+        //                                     'attr' : String,
+        //                             }
+        //                     ]
         // }
+
+        function getDataFromContainer(container) {
+                var $container = $(container);
+                console.log($container);
+                console.log($container.find('.text-value'));
+                console.log($container);
+                return {
+                        'text'  : $container.find('.text-value').val(),
+                        'attr' : $container.find('.attr-value').val()
+                };
+        }
 };
 
 FotE.clearParams = function() {
